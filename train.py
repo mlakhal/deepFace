@@ -39,11 +39,8 @@ import matplotlib.pyplot as plt
 
 from sklearn.cross_validation import train_test_split
 from sklearn.datasets import fetch_lfw_people
-from sklearn.grid_search import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
-from sklearn.decomposition import RandomizedPCA
-from sklearn.svm import SVC
 from keras.utils import np_utils
 
 from utils.data import reshapeDataset
@@ -56,7 +53,7 @@ from models import FaceCNN
 '''
 #############################################################
 BATCH_SIZE = 100
-NB_EPOCH= 40
+NB_EPOCH = 40
 #############################################################
 # Display progress logs on stdout
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s')
