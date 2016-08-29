@@ -32,6 +32,9 @@ class Model(object):
     def predict_classes(self, X):
         return self.model.predict_classes(X)
 
+    def predict_proba(self, X):
+        return self.model.predict_proba(X)
+
     def save_weights(self):
         print('Saving best parameters...')
         self.model.save_weights('FaceCNN_weights.h5', overwrite=True)

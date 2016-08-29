@@ -13,6 +13,7 @@ import numpy as np
 import cv2
 import argparse
 
+from os import path
 from models import FaceCNN
 
 WIDTH = 32
@@ -30,9 +31,11 @@ def main():
     face_cascade = cv2.CascadeClassifier('./haarcascade_frontalface_alt.xml')
     
     w_path = args['weights']
+    assert(path.isfile(w_path))
     model = FaceCNN(nb_class=7, lr=0.1, weights_path=w_path)
 
     img_path = args['image']
+    assert(path.isfile(img_path))
     img = cv2.imread(img_path)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -56,11 +59,12 @@ def main():
         face = cv2.resize(face, (WIDTH, HEIGHT)) 
         X = face[np.newaxis, np.newaxis, :, :]
         pred_cls = model.predict_classes(X)
-        #proba = model.predict_proba(X)
+        proba = model.predict_proba(X)
         
         xText = x - 10     
         ytext = y + h + 30
-        label = faces_dic[pred_cls[0]]
+        label = faces_dic[pred_cls[0]] 
+        #' \n {}'.format(format(np.max(proba[0]), '.2f'))
 
         cv2.putText(img, label, (xText, ytext),
             cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 204, 0), 2)
