@@ -2,8 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from keras.models import Sequential
-from keras.layers.normalization import BatchNormalization
-from keras.layers.advanced_activations import PReLU
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras.callbacks import History
